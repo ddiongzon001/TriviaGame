@@ -1,3 +1,4 @@
+/* containers */
 body{
     background-image: url("../images/background.png");
     text-align: center;
@@ -13,26 +14,42 @@ body{
     height: 100%;
 }
 
+/* text */
 h1{
     color: #f55241;
     font-family: 'Luckiest Guy', cursive;
     font-size: 100px;
 }
 
-p, h2, h5{
+p, h2{
     font-family: 'Roboto', sans-serif;
 }
 
+h5{
+    font-family: 'Roboto', sans-serif;
+    line-height: 2;
+}
+
+h5:hover{
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #E49697;
+    border: 2px dashed #F7D858;
+    color: white;
+}
+
+
+/* buttons */
 #start{
     margin: 10%;
     width: 50%;
     font-family: 'Roboto', sans-serif;
-    border: 1px dashed white;
+    border: 2px dashed white;
     font-weight: bold;
     background-color: #f55241;
 }
 
 #start:hover{
     background-color: #F7D858;
-    border: 1px dashed lightgrey;
+    border: 2px dashed lightgrey;
 }

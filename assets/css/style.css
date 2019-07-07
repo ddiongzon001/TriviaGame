@@ -21,11 +21,23 @@ h1{
     font-size: 100px;
 }
 
-p, h2{
+p, h2, h6{
     font-family: 'Roboto', sans-serif;
 }
 
+h3{
+    color: #f55241;
+    margin: 2%;
+}
+
+h4{
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 2%;
+    font-size: 18px;
+}
+
 h5{
+
     font-family: 'Roboto', sans-serif;
     line-height: 2;
 }

@@ -3,31 +3,31 @@ var test = [{
         question: "Who hides eggs on a Sunday?",
         choices: ["Br'er Rabbit", "Bugs Bunny", "The Easter Bunny", "The White Rabbit"],
         answer: "The Easter Bunny",
-        image: "../images/easter_bunny.jpg"
+        image: "../TriviaGame/assets/images/easter_bunny.jpg"
     },
     {
         question: "He's late for a very important date",
         choices: ["Lola Bunny", "Judy Hopps", "Thumper", "The White Rabbit"],
         answer: "The White Rabbit",
-        image: "../images/white_rabbit.jpg"
+        image: "../TriviaGame/assets/images/white_rabbit.jpg"
     },
     {
         question: "Who framed _______?",
         choices: ["Bunnicula", "Little Bunny Foo Foo", "Cadbury Bunny", "Roger Rabbit"],
         answer: "Roger Rabbit",
-        image: "../images/rogger_rabbit.jpg"
+        image: "../TriviaGame/assets/images/rogger_rabbit.jpg"
     },
     {
         question: "Arthur's postcard sending friend",
         choices: ["Buster", "Rabbit", "Peter Cottontail", "Velveteen Rabbit"],
         answer: "Buster",
-        image: "../images/buster.png"
+        image: "../TriviaGame/assets/images/buster.png"
     },
     {
         question: "________ are for kids! Silly rabbit!",
         choices: ["Energizer Bunny", "Trix Rabbit", "Nesquik Bunny", "Peter Rabbit"],
         answer: "Trix Rabbit",
-        image: "../images/trix_rabbit.jpg"
+        image: "../TriviaGame/assets/images/trix_rabbit.jpg"
     }
 ];
 
@@ -68,9 +68,10 @@ function rightAnswer() {
     clearInterval(interval);
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");
-    questionDisplay.text("RIGHT ANSWER");
+    questionDisplay.append("<h3>CORRECT ANSWER!</h3>");
+    questionDisplay.append("<h4>" + test[questionCount].answer + " is correct!</h4>");
     answerDisplay.text("");
-
+    answerDisplay.append("<img src=" + test[questionCount].image + ">")
     questionCount++;
     right++;
 
@@ -86,8 +87,10 @@ function wrongAnswer() {
     clearInterval(interval);
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");
-    questionDisplay.text("WRONG ANSWER");
+    questionDisplay.append("<h3>INCORRECT ANSWER!</h3>");
+    questionDisplay.append("<h4>The correct answer is: " + test[questionCount].answer + "</h4>");
     answerDisplay.text("");
+    answerDisplay.append("<img src=" + test[questionCount].image + ">")
 
     questionCount++;
     wrong++;
@@ -102,8 +105,10 @@ function timeOut() {
     clearInterval(interval);
 
     timeDisplay.text("Time remaining left: 0 seconds");
-    questionDisplay.text("RAN OUT OF TIME");
-    answerDisplay.text("");
+    questionDisplay.append("<h3>TIME RAN OUT!</h3>");
+    questionDisplay.append("<h4>The correct answer is: " + test[questionCount].answer + "</h4>");
+    answerDisplay.text("");    answerDisplay.text("");
+    answerDisplay.append("<img src=" + test[questionCount].image + ">")
 
     questionCount++;
     unanswered++;
@@ -119,17 +124,22 @@ function countPage() {
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");
     questionDisplay.text("Test Done! Here is how you did:");
+    answerDisplay.text("");
     answerDisplay.append("<h3>You got a " + grade + "%!</h3>");
 
     //shows user different messages based on the grade
     if (grade === 0) {
         answerDisplay.append("<h4>Do you even have a brain underneath that hare?</h4>");
+        answerDisplay.append("<img src='../TriviaGame/assets/images/0.gif'><br>");
     } else if (grade < 80) {
         answerDisplay.append("<h4>Bring a rabbit's foot for luck next time!</h4>");
+        answerDisplay.append("<img src='../TriviaGame/assets/images/60.gif'><br>");
     } else if (grade === 80) {
         answerDisplay.append("<h4>Aw so close to perfect!</h4>");
+        answerDisplay.append("<img src='../TriviaGame/assets/images/80.gif'><br>");
     } else {
         answerDisplay.append("<h4>Wow! Somebunny is smart!</h4>");
+        answerDisplay.append("<img src='../TriviaGame/assets/images/100.gif'><br>");
     }
 
     answerDisplay.append("<p>Correct Answer: " + right + "</p>");

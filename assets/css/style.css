@@ -74,3 +74,10 @@ h5:hover{
     background-color: #F7D858;
     border: 2px dashed lightgrey;
 }
+
+/* images */
+img{
+    width: 45%;
+    height: auto;
+    margin-bottom: 2%;
+}

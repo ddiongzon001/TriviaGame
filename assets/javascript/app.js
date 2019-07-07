@@ -120,6 +120,8 @@ function timeOut() {
 function countPage() {
     console.log("went through countPage");
 
+    clearInterval(interval);
+
     var grade = Math.round((right / 5) * 100);
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");

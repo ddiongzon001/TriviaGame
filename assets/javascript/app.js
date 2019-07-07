@@ -133,10 +133,10 @@ function countPage() {
     if (grade === 0) {
         answerDisplay.append("<h4>Do you even have a brain underneath that hare?</h4>");
         answerDisplay.append("<img src='../TriviaGame/assets/images/0.gif'><br>");
-    } else if (grade < 80) {
+    } else if (grade < 60) {
         answerDisplay.append("<h4>Bring a rabbit's foot for luck next time!</h4>");
         answerDisplay.append("<img src='../TriviaGame/assets/images/60.gif'><br>");
-    } else if (grade === 80) {
+    } else if (grade === 60) {
         answerDisplay.append("<h4>Aw so close to perfect!</h4>");
         answerDisplay.append("<img src='../TriviaGame/assets/images/80.gif'><br>");
     } else {

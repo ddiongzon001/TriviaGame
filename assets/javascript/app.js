@@ -191,9 +191,7 @@ function questions() {
         }
 
         //shows the answer page if you select the wrong answer
-        if (test[questionCount].answer != test[questionCount].choices[1] &&
-            test[questionCount].answer != test[questionCount].choices[2] &&
-            test[questionCount].answer != test[questionCount].choices[3]) {
+        if (test[questionCount].answer == test[questionCount].choices[0]) {
             console.log("went through 0");
 
             $("#answer0").on("click", rightAnswer);
@@ -202,9 +200,7 @@ function questions() {
             $("#answer3").on("click", wrongAnswer);
 
 
-        } else if (test[questionCount].answer != test[questionCount].choices[0] &&
-            test[questionCount].answer != test[questionCount].choices[2] &&
-            test[questionCount].answer != test[questionCount].choices[3]) {
+        } else if (test[questionCount].answer == test[questionCount].choices[1]) {
             console.log("went through 1");
 
             $("#answer0").on("click", wrongAnswer);
@@ -212,9 +208,7 @@ function questions() {
             $("#answer2").on("click", wrongAnswer);
             $("#answer3").on("click", wrongAnswer);
 
-        } else if (test[questionCount].answer != test[questionCount].choices[0] &&
-            test[questionCount].answer != test[questionCount].choices[1] &&
-            test[questionCount].answer != test[questionCount].choices[3]) {
+        } else if (test[questionCount].answer == test[questionCount].choices[2]) {
             console.log("went through 2");
 
             $("#answer0").on("click", wrongAnswer);
@@ -222,9 +216,7 @@ function questions() {
             $("#answer2").on("click", rightAnswer);
             $("#answer3").on("click", wrongAnswer);
 
-        } else if (test[questionCount].answer != test[questionCount].choices[0] &&
-            test[questionCount].answer != test[questionCount].choices[1] &&
-            test[questionCount].answer != test[questionCount].choices[2]) {
+        } else if (test[questionCount].answer == test[questionCount].choices[3]) {
             console.log("went through 3");
 
             $("#answer0").on("click", wrongAnswer);
@@ -235,7 +227,6 @@ function questions() {
         }
 
     } else {
-        // clearTimeout(timer);
         countPage();
     }
 }

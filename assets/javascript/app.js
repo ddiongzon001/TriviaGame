@@ -26,6 +26,7 @@ var test = [{
     }
 ];
 
+//count variables
 var questionCount = 0;
 var right = 0;
 var wrong = 0;
@@ -38,22 +39,28 @@ var questionDisplay = $("#question");
 var answerDisplay = $("#answers");
 
 //timer variables
-var seconds = 30;
+var seconds;
+var interval;
 
 
 //Define functions
 //function for count
-function countDown(){
+function countDown() {
     seconds--;
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");
+
+    if (seconds === 0) {
+        timeOut();
+    }
 }
 
 //function to show the user was right
 function rightAnswer() {
-    clearTimeout(timer);
 
     console.log("went through right");
+
+    clearInterval(interval);
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");
     questionDisplay.text("RIGHT ANSWER");
@@ -61,6 +68,7 @@ function rightAnswer() {
 
     questionCount++;
     right++;
+    // seconds = 6;
 
     setTimeout(questions, 1000);
 
@@ -68,9 +76,10 @@ function rightAnswer() {
 
 //function to show the user was wrong
 function wrongAnswer() {
-    clearTimeout(timer);
-    
+
     console.log("went through wrong");
+
+    clearInterval(interval);
 
     timeDisplay.text("Time remaining left: " + seconds + " seconds");
     questionDisplay.text("WRONG ANSWER");
@@ -78,6 +87,7 @@ function wrongAnswer() {
 
     questionCount++;
     wrong++;
+    // seconds = 6;
 
     setTimeout(questions, 1000);
 }
@@ -86,20 +96,24 @@ function wrongAnswer() {
 function timeOut() {
     console.log("went through timeOut");
 
+    clearInterval(interval);
+
     timeDisplay.text("Time remaining left: 0 seconds");
     questionDisplay.text("RAN OUT OF TIME");
     answerDisplay.text("");
 
     questionCount++;
     unanswered++;
+    // seconds = 6;
 
     setTimeout(questions, 1000);
 }
 
+//shows the user the count of what they got wrong/right/unanswered and shows replay again button
 function countPage() {
     console.log("went through countPage");
 
-    timeDisplay.text("Time remaining left: " + seconds);
+    timeDisplay.text("Time remaining left: " + seconds + " seconds");
     questionDisplay.text("Test Done! Here is how you did:");
     answerDisplay.append("<p>Correct Answer: " + right + "</p>");
     answerDisplay.append("<p>Incorrect Answer: " + wrong + "</p>");
@@ -122,9 +136,6 @@ function questions() {
 
     console.log("went through question");
 
-    //timer
-    // var timer = setTimeout(timeOut, 1000 * 5);
-
     //display of questions & answers
     if (questionCount < test.length) {
 
@@ -136,8 +147,9 @@ function questions() {
         startButtonDisplay.text("");
 
         //display the time for the question
-        timeDisplay.text("Time remaining left: " + seconds);
-        setInterval(countDown, 1000) //remember to change this later!
+        seconds = 6;
+        timeDisplay.text("Time remaining left: " + seconds + " seconds");
+        interval = setInterval(countDown, 1000) //remember to change this later!
         answerDisplay.text("");
 
         //displays the question
@@ -193,7 +205,7 @@ function questions() {
         }
 
     } else {
-        clearTimeout(timer);
+        // clearTimeout(timer);
         countPage();
     }
 }

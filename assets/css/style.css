@@ -78,7 +78,7 @@ h5:hover{
 
 /* images */
 img{
-    height: 100px;
+    max-height: 250px;
     width: auto;
     margin-bottom: 2%;
 }

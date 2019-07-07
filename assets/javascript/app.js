@@ -75,7 +75,7 @@ function rightAnswer() {
     questionCount++;
     right++;
 
-    setTimeout(questions, 1000);
+    setTimeout(questions, 1000 * 3);
 
 }
 
@@ -95,7 +95,7 @@ function wrongAnswer() {
     questionCount++;
     wrong++;
 
-    setTimeout(questions, 1000);
+    setTimeout(questions, 1000 * 3);
 }
 
 //shows when the user times out of the question
@@ -113,7 +113,7 @@ function timeOut() {
     questionCount++;
     unanswered++;
 
-    setTimeout(questions, 1000);
+    setTimeout(questions, 1000 * 3);
 }
 
 //shows the user the count of what they got wrong/right/unanswered and shows replay again button

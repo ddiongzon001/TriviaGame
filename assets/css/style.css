@@ -49,7 +49,16 @@ h5:hover{
     background-color: #f55241;
 }
 
-#start:hover{
+#again{
+    margin: 2%;
+    width: 50%;
+    font-family: 'Roboto', sans-serif;
+    border: 2px dashed white;
+    font-weight: bold;
+    background-color: #f55241;
+}
+
+#start:hover, #again:hover{
     background-color: #F7D858;
     border: 2px dashed lightgrey;
 }

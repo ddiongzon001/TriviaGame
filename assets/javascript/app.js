@@ -94,6 +94,16 @@ function countPage() {
     answerDisplay.append("<p>Incorrect Answer: " + wrong + "</p>");
     answerDisplay.append("<p>Unanswered Answer: " + unanswered + "</p>");
 
+    //restart the variables
+    questionCount = 0;
+    right = 0;
+    wrong = 0;
+    unanswered = 0;
+
+    //play again button
+    startButtonDisplay.html("<button type='button' class='btn btn-danger' id='again'>PLAY AGAIN?</button>");
+    $("#again").on("click", questions)
+
 }
 
 //function to show the questions
@@ -102,7 +112,6 @@ function questions() {
     console.log("went through question");
 
     //timer
-    // var time = 10;
     var timer = setTimeout(timeOut, 1000);
 
     //display of questions & answers
@@ -117,6 +126,7 @@ function questions() {
 
         //display the time for the question
         timeDisplay.text("Time remaining left: ");
+        answerDisplay.text("");
 
         //displays the question
         questionDisplay.text(test[questionCount].question);

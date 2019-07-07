@@ -2,7 +2,6 @@
 body{
     background-image: url("../images/background.png");
     text-align: center;
-    overflow: scroll;
 }
 
 #main{
@@ -13,6 +12,7 @@ body{
     border: 10px dashed #fdd863;
     position: fixed;
     height: 100%;
+    overflow-y: scroll;
 }
 
 /* text */
@@ -78,7 +78,7 @@ h5:hover{
 
 /* images */
 img{
-    height: 200px;
+    height: 100px;
     width: auto;
     margin-bottom: 2%;
 }

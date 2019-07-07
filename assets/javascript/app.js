@@ -38,15 +38,24 @@ var questionDisplay = $("#question");
 var answerDisplay = $("#answers");
 
 //timer variables
-
+var seconds = 30;
 
 
 //Define functions
+//function for count
+function countDown(){
+    seconds--;
+
+    timeDisplay.text("Time remaining left: " + seconds + " seconds");
+}
+
 //function to show the user was right
-function right() {
+function rightAnswer() {
+    clearTimeout(timer);
+
     console.log("went through right");
 
-    timeDisplay.text("Time remaining left: ");
+    timeDisplay.text("Time remaining left: " + seconds + " seconds");
     questionDisplay.text("RIGHT ANSWER");
     answerDisplay.text("");
 
@@ -58,10 +67,12 @@ function right() {
 }
 
 //function to show the user was wrong
-function wrong() {
+function wrongAnswer() {
+    clearTimeout(timer);
+    
     console.log("went through wrong");
 
-    timeDisplay.text("Time remaining left: ");
+    timeDisplay.text("Time remaining left: " + seconds + " seconds");
     questionDisplay.text("WRONG ANSWER");
     answerDisplay.text("");
 
@@ -75,7 +86,7 @@ function wrong() {
 function timeOut() {
     console.log("went through timeOut");
 
-    timeDisplay.text("Time remaining left: ");
+    timeDisplay.text("Time remaining left: 0 seconds");
     questionDisplay.text("RAN OUT OF TIME");
     answerDisplay.text("");
 
@@ -88,7 +99,7 @@ function timeOut() {
 function countPage() {
     console.log("went through countPage");
 
-    timeDisplay.text("Time remaining left: ");
+    timeDisplay.text("Time remaining left: " + seconds);
     questionDisplay.text("Test Done! Here is how you did:");
     answerDisplay.append("<p>Correct Answer: " + right + "</p>");
     answerDisplay.append("<p>Incorrect Answer: " + wrong + "</p>");
@@ -112,7 +123,7 @@ function questions() {
     console.log("went through question");
 
     //timer
-    var timer = setTimeout(timeOut, 1000);
+    // var timer = setTimeout(timeOut, 1000 * 5);
 
     //display of questions & answers
     if (questionCount < test.length) {
@@ -125,7 +136,8 @@ function questions() {
         startButtonDisplay.text("");
 
         //display the time for the question
-        timeDisplay.text("Time remaining left: ");
+        timeDisplay.text("Time remaining left: " + seconds);
+        setInterval(countDown, 1000) //remember to change this later!
         answerDisplay.text("");
 
         //displays the question
@@ -141,58 +153,42 @@ function questions() {
             test[questionCount].answer != test[questionCount].choices[2] &&
             test[questionCount].answer != test[questionCount].choices[3]) {
             console.log("went through 0");
-            answerIncorrect = true;
-            $("#answer1").on("click", wrong);
-            $("#answer2").on("click", wrong);
-            $("#answer3").on("click", wrong);
 
-            //shows the answer page if you select the right answer
-            if (test[questionCount].answer == test[questionCount].choices[0]) {
-                answerCorrect = true;
-                $("#answer0").on("click", right);
-            }
+            $("#answer0").on("click", rightAnswer);
+            $("#answer1").on("click", wrongAnswer);
+            $("#answer2").on("click", wrongAnswer);
+            $("#answer3").on("click", wrongAnswer);
+
 
         } else if (test[questionCount].answer != test[questionCount].choices[0] &&
             test[questionCount].answer != test[questionCount].choices[2] &&
             test[questionCount].answer != test[questionCount].choices[3]) {
             console.log("went through 1");
-            answerIncorrect = true;
-            $("#answer0").on("click", wrong);
-            $("#answer2").on("click", wrong);
-            $("#answer3").on("click", wrong);
 
-            if (test[questionCount].answer == test[questionCount].choices[1]) {
-                answerCorrect = true;
-                $("#answer1").on("click", right);
-            }
+            $("#answer0").on("click", wrongAnswer);
+            $("#answer1").on("click", rightAnswer);
+            $("#answer2").on("click", wrongAnswer);
+            $("#answer3").on("click", wrongAnswer);
 
         } else if (test[questionCount].answer != test[questionCount].choices[0] &&
             test[questionCount].answer != test[questionCount].choices[1] &&
             test[questionCount].answer != test[questionCount].choices[3]) {
             console.log("went through 2");
-            // answerIncorrect = true;
-            $("#answer0").on("click", wrong);
-            $("#answer1").on("click", wrong);
-            $("#answer3").on("click", wrong);
 
-            if (test[questionCount].answer == test[questionCount].choices[2]) {
-                // answerCorrect = true;
-                $("#answer2").on("click", right);
+            $("#answer0").on("click", wrongAnswer);
+            $("#answer1").on("click", wrongAnswer);
+            $("#answer2").on("click", rightAnswer);
+            $("#answer3").on("click", wrongAnswer);
 
-            }
         } else if (test[questionCount].answer != test[questionCount].choices[0] &&
             test[questionCount].answer != test[questionCount].choices[1] &&
             test[questionCount].answer != test[questionCount].choices[2]) {
             console.log("went through 3");
-            answerIncorrect = true;
-            $("#answer0").on("click", wrong);
-            $("#answer1").on("click", wrong);
-            $("#answer2").on("click", wrong);
 
-            if (test[questionCount].answer == test[questionCount].choices[3]) {
-                answerCorrect = true;
-                $("#answer3").on("click", right);
-            }
+            $("#answer0").on("click", wrongAnswer);
+            $("#answer1").on("click", wrongAnswer);
+            $("#answer2").on("click", wrongAnswer);
+            $("#answer3").on("click", rightAnswer);
 
         }
 

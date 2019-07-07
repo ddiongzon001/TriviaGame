@@ -28,8 +28,6 @@ var test = [{
 
 var questionCount = 0;
 
-// var questionCount = 0;
-
 //HTML display variables
 var startButtonDisplay = $("#button");
 var timeDisplay = $("#time");
@@ -41,18 +39,26 @@ var answerDisplay = $("#answers");
 
 
 //Define functions
-//function to show the answer
-function answer() {
-
-    //if user guesses it right
-    // if()
+//function to show the user was right
+function right() {
     startButtonDisplay.text("");
     timeDisplay.text("Time remaining left: ");
-    questionDisplay.text("ANSWER TIME");
-    console.log(questionDisplay);
+    questionDisplay.text("RIGHT ANSWER");
     answerDisplay.text("");
 
-    //if user guesses it wrong
+    questionCount++;
+
+    setTimeout(questions, 1000);
+
+}
+
+//function to show the user was wrong
+function wrong() {
+    startButtonDisplay.text("");
+    timeDisplay.text("Time remaining left: ");
+    questionDisplay.text("WRONG ANSWER");
+    answerDisplay.text("");
+
     questionCount++;
 
     setTimeout(questions, 1000);
@@ -61,6 +67,10 @@ function answer() {
 //shows when the user times out of the question
 function timeOut() {
 
+}
+
+function countPage(){
+    
 }
 
 //function to show the questions
@@ -72,6 +82,10 @@ function questions() {
 
     //display of questions & answers
     if (questionCount < test.length) {
+
+        //restarts the variables
+        answerCorrect = "";
+        answerIncorrect = "";
 
         //hides the button
         startButtonDisplay.text("");
@@ -87,23 +101,70 @@ function questions() {
             answerDisplay.append("<h5 id=answer" + i + ">" + test[questionCount].choices[i] + "</h5>");
         }
 
-        //show the answer page
-        if (test[questionCount].answer == test[questionCount].choices[0]) {
-            $("#answer0").on("click", answer);
-        }
-        else if (test[questionCount].answer == test[questionCount].choices[1]) {
-            $("#answer1").on("click", answer);
-        }
-        else if (test[questionCount].answer == test[questionCount].choices[2]) {
-            $("#answer2").on("click", answer);
-        }
-        else {
-            $("#answer3").on("click", answer);
-        }
+        //shows the answer page if you select the wrong answer
+        if (test[questionCount].answer != test[questionCount].choices[1] &&
+            test[questionCount].answer != test[questionCount].choices[2] &&
+            test[questionCount].answer != test[questionCount].choices[3]) {
+            console.log("went through 0");
+            answerIncorrect = true;
+            $("#answer1").on("click", wrong);
+            $("#answer2").on("click", wrong);
+            $("#answer3").on("click", wrong);
 
+            //shows the answer page if you select the right answer
+            if (test[questionCount].answer == test[questionCount].choices[0]) {
+                answerCorrect = true;
+                $("#answer0").on("click", right);
+            }
+
+        } else if (test[questionCount].answer != test[questionCount].choices[0] &&
+            test[questionCount].answer != test[questionCount].choices[2] &&
+            test[questionCount].answer != test[questionCount].choices[3]) {
+            console.log("went through 1");
+            answerIncorrect = true;
+            $("#answer0").on("click", wrong);
+            $("#answer2").on("click", wrong);
+            $("#answer3").on("click", wrong);
+
+            if (test[questionCount].answer == test[questionCount].choices[1]) {
+                answerCorrect = true;
+                $("#answer1").on("click", right);
+            }
+
+        } else if (test[questionCount].answer != test[questionCount].choices[0] &&
+            test[questionCount].answer != test[questionCount].choices[1] &&
+            test[questionCount].answer != test[questionCount].choices[3]) {
+            console.log("went through 2");
+            // answerIncorrect = true;
+            $("#answer0").on("click", wrong);
+            $("#answer1").on("click", wrong);
+            $("#answer3").on("click", wrong);
+
+            if (test[questionCount].answer == test[questionCount].choices[2]) {
+                // answerCorrect = true;
+                $("#answer2").on("click", right);
+
+            }
+        } else if (test[questionCount].answer != test[questionCount].choices[0] &&
+            test[questionCount].answer != test[questionCount].choices[1] &&
+            test[questionCount].answer != test[questionCount].choices[2]) {
+            console.log("went through 3");
+            answerIncorrect = true;
+            $("#answer0").on("click", wrong);
+            $("#answer1").on("click", wrong);
+            $("#answer2").on("click", wrong);
+
+            if (test[questionCount].answer == test[questionCount].choices[3]) {
+                answerCorrect = true;
+                $("#answer3").on("click", right);
+            }
+
+        }
 
     }
-
+    else{
+        countPage();
+    }
 }
 
 //function to show the start button
